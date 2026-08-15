@@ -16,13 +16,25 @@
     body.theme-vibrant { --bg: #0b0f19; --card-bg: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.9)); --primary: #f59e0b; --accent: #ef4444; --text: #ffffff; --subtext: #cbd5e1; --border: rgba(239, 68, 68, 0.3); }
 
     body { background: var(--bg); color: var(--text); min-height: 100vh; padding-bottom: 110px; }
-    
-    /* INTEGRATED NON-OVERLAY TOP DOCK BAR */
-    .demo-topbar { width:100%; background:#0f172a; border-bottom:2px solid var(--primary); padding:12px 20px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; position:relative; z-index:100; box-shadow:0 4px 20px rgba(0,0,0,0.5); }
-    .topbar-label { font-size:0.88rem; font-weight:800; color:#fca5a5; display:flex; align-items:center; gap:8px; }
-    .topbar-options { display:flex; gap:8px; flex-wrap:wrap; }
-    .theme-btn { background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.18); color:#f8fafc; padding:8px 14px; border-radius:12px; font-size:0.82rem; font-weight:800; cursor:pointer; transition:all 0.2s; }
-    .theme-btn.active { background:linear-gradient(135deg, #ef4444, #dc2626); border-color:#ef4444; color:#fff; box-shadow:0 4px 14px rgba(239,68,68,0.4); }
+
+    /* INTEGRATED STICKY TOPBAR - ALWAYS AT TOP OF SCREEN, ZERO OVERLAPPING */
+    .demo-topbar { position: sticky; top: 0; left: 0; width: 100%; background: #0f172a; border-bottom: 2px solid var(--primary); padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; z-index: 99999; box-shadow: 0 4px 20px rgba(0,0,0,0.6); transition: background-color 0.3s, border-color 0.3s; }
+    .topbar-label { font-size: 0.88rem; font-weight: 800; color: #fca5a5; display: flex; align-items: center; gap: 8px; }
+    .topbar-options { display: flex; gap: 8px; flex-wrap: wrap; }
+    .theme-btn { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.18); color: #f8fafc; padding: 8px 14px; border-radius: 12px; font-size: 0.82rem; font-weight: 800; cursor: pointer; transition: all 0.2s; }
+    .theme-btn.active { background: linear-gradient(135deg, var(--primary), #dc2626); border-color: var(--primary); color: #fff; box-shadow: 0 4px 14px rgba(239,68,68,0.4); }
+
+    /* LIGHT THEME STYLES */
+    body.theme-light .demo-topbar { background: #ffffff; border-bottom: 2px solid var(--primary); box-shadow: 0 4px 15px rgba(0,0,0,0.08); }
+    body.theme-light .topbar-label { color: #0f172a; }
+    body.theme-light .theme-btn { background: #f1f5f9; border-color: #cbd5e1; color: #334155; }
+    body.theme-light .theme-btn.active { background: var(--primary); border-color: var(--primary); color: #ffffff; }
+
+    /* VIBRANT THEME STYLES */
+    body.theme-vibrant .demo-topbar { background: #0b0f19; border-bottom: 2px solid var(--primary); }
+    body.theme-vibrant .topbar-label { color: #f59e0b; }
+    body.theme-vibrant .theme-btn { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.2); color: #ffffff; }
+    body.theme-vibrant .theme-btn.active { background: var(--primary); border-color: var(--primary); color: #ffffff; }
 
     .hero-banner { width:100%; height:220px; background-size:cover; background-position:center; position:relative; }
     .hero-overlay { position:absolute; inset:0; background:linear-gradient(180deg, rgba(7,10,18,0.2) 0%, var(--bg) 100%); }
@@ -61,7 +73,7 @@
 </head>
 <body class="theme-dark">
 
-  <!-- BARRA DE TOPO INTEGRADA (SEM SOBREPOSIÇÃO) -->
+  <!-- BARRA DE TOPO INTEGRADA E FIXA NO TOPO DA TELA (STICKY) -->
   <div class="demo-topbar">
     <div class="topbar-label"><i class="fa-solid fa-palette"></i> Estilo do Layout:</div>
     <div class="topbar-options">
@@ -102,11 +114,11 @@
 
     <div class="grid-menu" id="gridMenu">
     <div class="item-card" data-cat="Burgers Smash">
-      <img src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=200&auto=format&fit=crop&q=80" class="item-img" alt="Smash Cheese Bacon">
+      <img src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=400&auto=format&fit=crop&q=80" class="item-img" alt="Smash Cheese Bacon Double">
       <div class="item-info">
         <span class="item-cat">Burgers Smash</span>
-        <h3 class="item-title">Smash Cheese Bacon</h3>
-        <p class="item-desc">2x ultra smash burgers 90g, queijo cheddar inglês derretido, bacon artesanal crocante e maionese da casa.</p>
+        <h3 class="item-title">Smash Cheese Bacon Double</h3>
+        <p class="item-desc">2x ultra smash burgers 90g Angus, queijo cheddar derretido, bacon artesanal crocante e maionese da casa no pão brioche.</p>
         <div class="item-footer">
           <span class="item-price">R$ 34,90</span>
           <div class="cart-controls">
@@ -119,17 +131,102 @@
     </div>
   
     <div class="item-card" data-cat="Burgers Artesanais">
-      <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=200&auto=format&fit=crop&q=80" class="item-img" alt="Monster Double BBQ">
+      <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&auto=format&fit=crop&q=80" class="item-img" alt="Burger Artesanal Gorgonzola & Caramelizada">
       <div class="item-info">
         <span class="item-cat">Burgers Artesanais</span>
-        <h3 class="item-title">Monster Double BBQ</h3>
-        <p class="item-desc">Burger 180g Angus, queijo provolone empanado, cebola crispy e molho barbecue defumado.</p>
+        <h3 class="item-title">Burger Artesanal Gorgonzola & Caramelizada</h3>
+        <p class="item-desc">Blend 180g Angus assado na brasa, creme de gorgonzola premium, cebola caramelizada e rúcula fresca.</p>
         <div class="item-footer">
-          <span class="item-price">R$ 42,00</span>
+          <span class="item-price">R$ 39,90</span>
           <div class="cart-controls">
             <button class="btn-qty" onclick="changeQty(1, -1)">-</button>
             <span id="qty-1" class="qty-num">0</span>
             <button class="btn-qty" onclick="changeQty(1, 1)">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="item-card" data-cat="Burgers Artesanais">
+      <img src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=400&auto=format&fit=crop&q=80" class="item-img" alt="Monster BBQ Provolone Crispy">
+      <div class="item-info">
+        <span class="item-cat">Burgers Artesanais</span>
+        <h3 class="item-title">Monster BBQ Provolone Crispy</h3>
+        <p class="item-desc">Burger 200g Angus, disco de queijo provolone empanado e frito, cebola crispy e molho barbecue defumado.</p>
+        <div class="item-footer">
+          <span class="item-price">R$ 44,90</span>
+          <div class="cart-controls">
+            <button class="btn-qty" onclick="changeQty(2, -1)">-</button>
+            <span id="qty-2" class="qty-num">0</span>
+            <button class="btn-qty" onclick="changeQty(2, 1)">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="item-card" data-cat="Acompanhamentos & Porções">
+      <img src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=400&auto=format&fit=crop&q=80" class="item-img" alt="Batata Rústica com Cheddar & Bacon (400g)">
+      <div class="item-info">
+        <span class="item-cat">Acompanhamentos & Porções</span>
+        <h3 class="item-title">Batata Rústica com Cheddar & Bacon (400g)</h3>
+        <p class="item-desc">Batatas rústicas com casca, temperadas com páprica, cobertas por molho cheddar cremoso e crispy de bacon.</p>
+        <div class="item-footer">
+          <span class="item-price">R$ 28,90</span>
+          <div class="cart-controls">
+            <button class="btn-qty" onclick="changeQty(3, -1)">-</button>
+            <span id="qty-3" class="qty-num">0</span>
+            <button class="btn-qty" onclick="changeQty(3, 1)">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="item-card" data-cat="Acompanhamentos & Porções">
+      <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&auto=format&fit=crop&q=80" class="item-img" alt="Coxinhas de Costela sem Massa (6 un)">
+      <div class="item-info">
+        <span class="item-cat">Acompanhamentos & Porções</span>
+        <h3 class="item-title">Coxinhas de Costela sem Massa (6 un)</h3>
+        <p class="item-desc">Coxinhas crocantes e douradas recheadas 100% com costela bovina desfiada e cream cheese original.</p>
+        <div class="item-footer">
+          <span class="item-price">R$ 24,90</span>
+          <div class="cart-controls">
+            <button class="btn-qty" onclick="changeQty(4, -1)">-</button>
+            <span id="qty-4" class="qty-num">0</span>
+            <button class="btn-qty" onclick="changeQty(4, 1)">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="item-card" data-cat="Sobremesas & Shakes">
+      <img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=400&auto=format&fit=crop&q=80" class="item-img" alt="Milkshake de Ninho com Nutella (500ml)">
+      <div class="item-info">
+        <span class="item-cat">Sobremesas & Shakes</span>
+        <h3 class="item-title">Milkshake de Ninho com Nutella (500ml)</h3>
+        <p class="item-desc">Gelato de Leite Ninho batido na hora, borda generosa de Nutella pura e chantilly especial.</p>
+        <div class="item-footer">
+          <span class="item-price">R$ 22,90</span>
+          <div class="cart-controls">
+            <button class="btn-qty" onclick="changeQty(5, -1)">-</button>
+            <span id="qty-5" class="qty-num">0</span>
+            <button class="btn-qty" onclick="changeQty(5, 1)">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="item-card" data-cat="Bebidas">
+      <img src="https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=400&auto=format&fit=crop&q=80" class="item-img" alt="Soda Italiana de Maçã Verde (400ml)">
+      <div class="item-info">
+        <span class="item-cat">Bebidas</span>
+        <h3 class="item-title">Soda Italiana de Maçã Verde (400ml)</h3>
+        <p class="item-desc">Bebida refrescante levemente gaseificada com xarope artesanal de maçã verde e gelo.</p>
+        <div class="item-footer">
+          <span class="item-price">R$ 12,90</span>
+          <div class="cart-controls">
+            <button class="btn-qty" onclick="changeQty(6, -1)">-</button>
+            <span id="qty-6" class="qty-num">0</span>
+            <button class="btn-qty" onclick="changeQty(6, 1)">+</button>
           </div>
         </div>
       </div>
@@ -147,13 +244,18 @@
   </div>
 
   <script>
-    var products = JSON.parse('[{"title":"Smash Cheese Bacon","categoria":"Burgers Smash","desc":"2x ultra smash burgers 90g, queijo cheddar inglês derretido, bacon artesanal crocante e maionese da casa.","priceStr":"R$ 34,90","price":34.9,"image":"https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=200&auto=format&fit=crop&q=80"},{"title":"Monster Double BBQ","categoria":"Burgers Artesanais","desc":"Burger 180g Angus, queijo provolone empanado, cebola crispy e molho barbecue defumado.","priceStr":"R$ 42,00","price":42,"image":"https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=200&auto=format&fit=crop&q=80"}]');
+    var products = JSON.parse('[{"title":"Smash Cheese Bacon Double","categoria":"Burgers Smash","desc":"2x ultra smash burgers 90g Angus, queijo cheddar derretido, bacon artesanal crocante e maionese da casa no pão brioche.","priceStr":"R$ 34,90","price":34.9,"image":"https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=400&auto=format&fit=crop&q=80"},{"title":"Burger Artesanal Gorgonzola & Caramelizada","categoria":"Burgers Artesanais","desc":"Blend 180g Angus assado na brasa, creme de gorgonzola premium, cebola caramelizada e rúcula fresca.","priceStr":"R$ 39,90","price":39.9,"image":"https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&auto=format&fit=crop&q=80"},{"title":"Monster BBQ Provolone Crispy","categoria":"Burgers Artesanais","desc":"Burger 200g Angus, disco de queijo provolone empanado e frito, cebola crispy e molho barbecue defumado.","priceStr":"R$ 44,90","price":44.9,"image":"https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=400&auto=format&fit=crop&q=80"},{"title":"Batata Rústica com Cheddar & Bacon (400g)","categoria":"Acompanhamentos & Porções","desc":"Batatas rústicas com casca, temperadas com páprica, cobertas por molho cheddar cremoso e crispy de bacon.","priceStr":"R$ 28,90","price":28.9,"image":"https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=400&auto=format&fit=crop&q=80"},{"title":"Coxinhas de Costela sem Massa (6 un)","categoria":"Acompanhamentos & Porções","desc":"Coxinhas crocantes e douradas recheadas 100% com costela bovina desfiada e cream cheese original.","priceStr":"R$ 24,90","price":24.9,"image":"https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&auto=format&fit=crop&q=80"},{"title":"Milkshake de Ninho com Nutella (500ml)","categoria":"Sobremesas & Shakes","desc":"Gelato de Leite Ninho batido na hora, borda generosa de Nutella pura e chantilly especial.","priceStr":"R$ 22,90","price":22.9,"image":"https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=400&auto=format&fit=crop&q=80"},{"title":"Soda Italiana de Maçã Verde (400ml)","categoria":"Bebidas","desc":"Bebida refrescante levemente gaseificada com xarope artesanal de maçã verde e gelo.","priceStr":"R$ 12,90","price":12.9,"image":"https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=400&auto=format&fit=crop&q=80"}]');
     var cart = {};
 
     function switchTheme(themeName, btn) {
       document.body.className = 'theme-' + themeName;
-      document.querySelectorAll('.theme-btn').forEach(function(b) { b.classList.remove('active'); });
-      if (btn) btn.classList.add('active');
+      var btns = document.querySelectorAll('.theme-btn');
+      for (var i = 0; i < btns.length; i++) {
+        btns[i].classList.remove('active');
+      }
+      if (btn) {
+        btn.classList.add('active');
+      }
     }
 
     // Build unique category pills dynamically
