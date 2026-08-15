@@ -7,6 +7,18 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script>
+    function switchTheme(themeName, btn) {
+      document.body.className = 'theme-' + themeName;
+      var btns = document.querySelectorAll('.theme-btn');
+      for (var i = 0; i < btns.length; i++) {
+        btns[i].classList.remove('active');
+      }
+      if (btn) {
+        btn.classList.add('active');
+      }
+    }
+  </script>
   <style>
     * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter',sans-serif; transition: background-color 0.3s, color 0.3s, border-color 0.3s; }
     
@@ -244,19 +256,15 @@
   </div>
 
   <script>
-    var products = JSON.parse('[{"title":"Smash Cheese Bacon Double","categoria":"Burgers Smash","desc":"2x ultra smash burgers 90g Angus, queijo cheddar derretido, bacon artesanal crocante e maionese da casa no pão brioche.","priceStr":"R$ 34,90","price":34.9,"image":"https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=400&auto=format&fit=crop&q=80"},{"title":"Burger Artesanal Gorgonzola & Caramelizada","categoria":"Burgers Artesanais","desc":"Blend 180g Angus assado na brasa, creme de gorgonzola premium, cebola caramelizada e rúcula fresca.","priceStr":"R$ 39,90","price":39.9,"image":"https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&auto=format&fit=crop&q=80"},{"title":"Monster BBQ Provolone Crispy","categoria":"Burgers Artesanais","desc":"Burger 200g Angus, disco de queijo provolone empanado e frito, cebola crispy e molho barbecue defumado.","priceStr":"R$ 44,90","price":44.9,"image":"https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=400&auto=format&fit=crop&q=80"},{"title":"Batata Rústica com Cheddar & Bacon (400g)","categoria":"Acompanhamentos & Porções","desc":"Batatas rústicas com casca, temperadas com páprica, cobertas por molho cheddar cremoso e crispy de bacon.","priceStr":"R$ 28,90","price":28.9,"image":"https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=400&auto=format&fit=crop&q=80"},{"title":"Coxinhas de Costela sem Massa (6 un)","categoria":"Acompanhamentos & Porções","desc":"Coxinhas crocantes e douradas recheadas 100% com costela bovina desfiada e cream cheese original.","priceStr":"R$ 24,90","price":24.9,"image":"https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&auto=format&fit=crop&q=80"},{"title":"Milkshake de Ninho com Nutella (500ml)","categoria":"Sobremesas & Shakes","desc":"Gelato de Leite Ninho batido na hora, borda generosa de Nutella pura e chantilly especial.","priceStr":"R$ 22,90","price":22.9,"image":"https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=400&auto=format&fit=crop&q=80"},{"title":"Soda Italiana de Maçã Verde (400ml)","categoria":"Bebidas","desc":"Bebida refrescante levemente gaseificada com xarope artesanal de maçã verde e gelo.","priceStr":"R$ 12,90","price":12.9,"image":"https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=400&auto=format&fit=crop&q=80"}]');
-    var cart = {};
-
-    function switchTheme(themeName, btn) {
-      document.body.className = 'theme-' + themeName;
-      var btns = document.querySelectorAll('.theme-btn');
-      for (var i = 0; i < btns.length; i++) {
-        btns[i].classList.remove('active');
-      }
-      if (btn) {
-        btn.classList.add('active');
-      }
+    var rawCatalog = "%5B%7B%22title%22%3A%22Smash%20Cheese%20Bacon%20Double%22%2C%22categoria%22%3A%22Burgers%20Smash%22%2C%22desc%22%3A%222x%20ultra%20smash%20burgers%2090g%20Angus%2C%20queijo%20cheddar%20derretido%2C%20bacon%20artesanal%20crocante%20e%20maionese%20da%20casa%20no%20p%C3%A3o%20brioche.%22%2C%22priceStr%22%3A%22R%24%2034%2C90%22%2C%22price%22%3A34.9%2C%22image%22%3A%22https%3A%2F%2Fimages.unsplash.com%2Fphoto-1586190848861-99aa4a171e90%3Fw%3D400%26auto%3Dformat%26fit%3Dcrop%26q%3D80%22%7D%2C%7B%22title%22%3A%22Burger%20Artesanal%20Gorgonzola%20%26%20Caramelizada%22%2C%22categoria%22%3A%22Burgers%20Artesanais%22%2C%22desc%22%3A%22Blend%20180g%20Angus%20assado%20na%20brasa%2C%20creme%20de%20gorgonzola%20premium%2C%20cebola%20caramelizada%20e%20r%C3%BAcula%20fresca.%22%2C%22priceStr%22%3A%22R%24%2039%2C90%22%2C%22price%22%3A39.9%2C%22image%22%3A%22https%3A%2F%2Fimages.unsplash.com%2Fphoto-1568901346375-23c9450c58cd%3Fw%3D400%26auto%3Dformat%26fit%3Dcrop%26q%3D80%22%7D%2C%7B%22title%22%3A%22Monster%20BBQ%20Provolone%20Crispy%22%2C%22categoria%22%3A%22Burgers%20Artesanais%22%2C%22desc%22%3A%22Burger%20200g%20Angus%2C%20disco%20de%20queijo%20provolone%20empanado%20e%20frito%2C%20cebola%20crispy%20e%20molho%20barbecue%20defumado.%22%2C%22priceStr%22%3A%22R%24%2044%2C90%22%2C%22price%22%3A44.9%2C%22image%22%3A%22https%3A%2F%2Fimages.unsplash.com%2Fphoto-1586190848861-99aa4a171e90%3Fw%3D400%26auto%3Dformat%26fit%3Dcrop%26q%3D80%22%7D%2C%7B%22title%22%3A%22Batata%20R%C3%BAstica%20com%20Cheddar%20%26%20Bacon%20(400g)%22%2C%22categoria%22%3A%22Acompanhamentos%20%26%20Por%C3%A7%C3%B5es%22%2C%22desc%22%3A%22Batatas%20r%C3%BAsticas%20com%20casca%2C%20temperadas%20com%20p%C3%A1prica%2C%20cobertas%20por%20molho%20cheddar%20cremoso%20e%20crispy%20de%20bacon.%22%2C%22priceStr%22%3A%22R%24%2028%2C90%22%2C%22price%22%3A28.9%2C%22image%22%3A%22https%3A%2F%2Fimages.unsplash.com%2Fphoto-1573080496219-bb080dd4f877%3Fw%3D400%26auto%3Dformat%26fit%3Dcrop%26q%3D80%22%7D%2C%7B%22title%22%3A%22Coxinhas%20de%20Costela%20sem%20Massa%20(6%20un)%22%2C%22categoria%22%3A%22Acompanhamentos%20%26%20Por%C3%A7%C3%B5es%22%2C%22desc%22%3A%22Coxinhas%20crocantes%20e%20douradas%20recheadas%20100%25%20com%20costela%20bovina%20desfiada%20e%20cream%20cheese%20original.%22%2C%22priceStr%22%3A%22R%24%2024%2C90%22%2C%22price%22%3A24.9%2C%22image%22%3A%22https%3A%2F%2Fimages.unsplash.com%2Fphoto-1568901346375-23c9450c58cd%3Fw%3D400%26auto%3Dformat%26fit%3Dcrop%26q%3D80%22%7D%2C%7B%22title%22%3A%22Milkshake%20de%20Ninho%20com%20Nutella%20(500ml)%22%2C%22categoria%22%3A%22Sobremesas%20%26%20Shakes%22%2C%22desc%22%3A%22Gelato%20de%20Leite%20Ninho%20batido%20na%20hora%2C%20borda%20generosa%20de%20Nutella%20pura%20e%20chantilly%20especial.%22%2C%22priceStr%22%3A%22R%24%2022%2C90%22%2C%22price%22%3A22.9%2C%22image%22%3A%22https%3A%2F%2Fimages.unsplash.com%2Fphoto-1572490122747-3968b75cc699%3Fw%3D400%26auto%3Dformat%26fit%3Dcrop%26q%3D80%22%7D%2C%7B%22title%22%3A%22Soda%20Italiana%20de%20Ma%C3%A7%C3%A3%20Verde%20(400ml)%22%2C%22categoria%22%3A%22Bebidas%22%2C%22desc%22%3A%22Bebida%20refrescante%20levemente%20gaseificada%20com%20xarope%20artesanal%20de%20ma%C3%A7%C3%A3%20verde%20e%20gelo.%22%2C%22priceStr%22%3A%22R%24%2012%2C90%22%2C%22price%22%3A12.9%2C%22image%22%3A%22https%3A%2F%2Fimages.unsplash.com%2Fphoto-1622483767028-3f66f32aef97%3Fw%3D400%26auto%3Dformat%26fit%3Dcrop%26q%3D80%22%7D%5D";
+    var products = [];
+    try {
+      products = JSON.parse(decodeURIComponent(rawCatalog));
+    } catch(e) {
+      console.error("Error parsing catalog JSON:", e);
     }
+    
+    var cart = {};
 
     // Build unique category pills dynamically
     (function initCategories() {
