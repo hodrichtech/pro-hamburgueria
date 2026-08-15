@@ -58,9 +58,9 @@
         <div class="item-footer">
           <span class="item-price">R$ 34,90</span>
           <div class="cart-controls">
-            <button class="btn-qty" onclick="changeQty('7b6bbe40-c95a-4138-b4b9-8785930a10ac', -1)">-</button>
-            <span id="qty-7b6bbe40-c95a-4138-b4b9-8785930a10ac" class="qty-num">0</span>
-            <button class="btn-qty" onclick="changeQty('7b6bbe40-c95a-4138-b4b9-8785930a10ac', 1)">+</button>
+            <button class="btn-qty" onclick="changeQty('fbeef2ef-69c3-40fc-9fb1-686143259837', -1)">-</button>
+            <span id="qty-fbeef2ef-69c3-40fc-9fb1-686143259837" class="qty-num">0</span>
+            <button class="btn-qty" onclick="changeQty('fbeef2ef-69c3-40fc-9fb1-686143259837', 1)">+</button>
           </div>
         </div>
       </div>
@@ -75,9 +75,9 @@
         <div class="item-footer">
           <span class="item-price">R$ 42,00</span>
           <div class="cart-controls">
-            <button class="btn-qty" onclick="changeQty('ddc9e3a2-f026-4c72-9f9e-6bf7f3f3f0f2', -1)">-</button>
-            <span id="qty-ddc9e3a2-f026-4c72-9f9e-6bf7f3f3f0f2" class="qty-num">0</span>
-            <button class="btn-qty" onclick="changeQty('ddc9e3a2-f026-4c72-9f9e-6bf7f3f3f0f2', 1)">+</button>
+            <button class="btn-qty" onclick="changeQty('49d09eb7-bf42-4c87-824a-e598abc125a8', -1)">-</button>
+            <span id="qty-49d09eb7-bf42-4c87-824a-e598abc125a8" class="qty-num">0</span>
+            <button class="btn-qty" onclick="changeQty('49d09eb7-bf42-4c87-824a-e598abc125a8', 1)">+</button>
           </div>
         </div>
       </div>
@@ -95,7 +95,7 @@
   </div>
 
   <script>
-    const products = [{"id":"7b6bbe40-c95a-4138-b4b9-8785930a10ac","meiSlug":"pro-hamburgueria","title":"Smash Cheese Bacon","categoria":"Burgers Smash","desc":"2x ultra smash burgers 90g, queijo cheddar inglês derretido, bacon artesanal crocante e maionese da casa.","price":34.9,"priceStr":"R$ 34,90","image":"https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=200&auto=format&fit=crop&q=80","createdAt":"2026-08-15T00:39:03.172Z"},{"id":"ddc9e3a2-f026-4c72-9f9e-6bf7f3f3f0f2","meiSlug":"pro-hamburgueria","title":"Monster Double BBQ","categoria":"Burgers Artesanais","desc":"Burger 180g Angus, queijo provolone empanado, cebola crispy e molho barbecue defumado.","price":42,"priceStr":"R$ 42,00","image":"https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=200&auto=format&fit=crop&q=80","createdAt":"2026-08-15T00:39:03.187Z"}];
+    const products = [{"id":"fbeef2ef-69c3-40fc-9fb1-686143259837","meiSlug":"pro-hamburgueria","title":"Smash Cheese Bacon","categoria":"Burgers Smash","desc":"2x ultra smash burgers 90g, queijo cheddar inglês derretido, bacon artesanal crocante e maionese da casa.","price":34.9,"priceStr":"R$ 34,90","image":"https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=200&auto=format&fit=crop&q=80","createdAt":"2026-08-15T00:39:46.223Z"},{"id":"49d09eb7-bf42-4c87-824a-e598abc125a8","meiSlug":"pro-hamburgueria","title":"Monster Double BBQ","categoria":"Burgers Artesanais","desc":"Burger 180g Angus, queijo provolone empanado, cebola crispy e molho barbecue defumado.","price":42,"priceStr":"R$ 42,00","image":"https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=200&auto=format&fit=crop&q=80","createdAt":"2026-08-15T00:39:46.240Z"}];
     const cart = {};
 
     function changeQty(id, delta) {
