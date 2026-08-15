@@ -83,6 +83,30 @@
     .btn-checkout { background:#fff; color:#dc2626; border:none; padding:12px 22px; border-radius:14px; font-weight:800; font-size:0.95rem; display:flex; align-items:center; gap:8px; cursor:pointer; }
 
     
+  
+    /* ==========================================================================
+       3 STRUCTURAL LAYOUT MODES (HERO GRID / COMPACT LIST / GLASSMORPHISM)
+       ========================================================================== */
+    body.layout-compact-list .hero-banner { height: 120px; }
+    body.layout-compact-list .profile-box { margin-top: -45px; }
+    body.layout-compact-list .avatar { width: 90px; height: 90px; }
+    body.layout-compact-list .catalog-grid { grid-template-columns: 1fr !important; }
+    body.layout-compact-list .card-item { display: flex; align-items: center; gap: 14px; text-align: left; padding: 12px; }
+    body.layout-compact-list .card-img { width: 85px; height: 85px; border-radius: 12px; flex-shrink: 0; }
+    body.layout-compact-list .card-body { flex: 1; padding: 0; }
+
+    body.layout-glassmorphism .card-item, body.layout-glassmorphism .info-card, body.layout-glassmorphism .desc {
+      background: rgba(15, 23, 42, 0.65) !important;
+      backdrop-filter: blur(16px) saturate(180%) !important;
+      border: 1.5px solid rgba(255, 255, 255, 0.18) !important;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1) !important;
+    }
+    body.layout-glassmorphism .card-item:hover {
+      border-color: var(--primary) !important;
+      box-shadow: 0 0 25px rgba(99, 102, 241, 0.35) !important;
+      transform: translateY(-4px);
+    }
+
   </style>
 </head>
 <body class="theme-dark">
